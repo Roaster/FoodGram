@@ -9,15 +9,19 @@
         </div>
     </section>
     
-
+    <div>
+        <span>
+            What is everyone eating?
+        </span>
+    </div>
     <div class="myContainer">
     {% for post in posts %}
         <div class="pictures">
-        <a href="{{ url_for('post', post_id=post['id']) }}">
+        <a href="{{ url_for('post', id=post['id']) }}">
             <h2>{{ post['title'] }}</h2>
         </a>
         <span class="badge badge-primary">{{ post['created'] }}</span>
-        <a href="{{ url_for('post', post_id=post['id']) }}"><img class="myPhoto"src={{ post['photo']}}>
+        <a href="{{ url_for('post', id=post['id']) }}"><img class="myPhoto"src={{ post['photo']}}>
         </a>
     <hr>
     </div>
