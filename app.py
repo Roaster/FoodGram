@@ -35,7 +35,21 @@ def index():
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
     files = os.listdir(app.config['UPLOAD_PATH'])
+    
     return render_template('index.html', posts=posts)
+
+@app.route('/display/<int:post_id>')
+def index2(post_id):
+    
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    conn.close()
+    files = os.listdir(app.config['UPLOAD_PATH'])
+    
+    return render_template('index.html', posts=posts)
+
+# display an individual post
+
 
 # display an individual post
 @app.route('/<int:post_id>')

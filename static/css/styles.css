@@ -1,3 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+
+}
+.myContainer{
+    display: flex;
+    width: 1000px;
+    overflow: auto;
+    margin: auto
+    
+}
+.pictures{
+    margin: 20px 20px;
+    
+}
+.myPhoto{
+    max-height: 800px;
+    max-width: 600px;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px;
+}
+
+a ~ a{
+    margin-left: 20px;
+}
+.nav{
+   
+}
+
+
+
+
+
 ul{
  padding-inline-start: 0;
     

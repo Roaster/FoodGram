@@ -47,3 +47,9 @@ function addComment(){
     node.appendChild(textnode);
     comments.appendChild(node);
 }
+
+
+document.querySelectorAll('.myPhoto').addEventListener('click', e => { 
+    console.log(e); }
+)
+console.log("This is working")
