@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     
-
+}
+body{
+    background:#a3def5
 }
 .myContainer{
     display: flex;
-    width: 1000px;
+    
     overflow: auto;
     margin: auto
     
@@ -30,8 +32,20 @@ a ~ a{
 }
 h1{
     margin: 25px auto;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 55px;
+    text-align: center;
 }
-
+p {
+    margin: 15px auto; 
+}
+.mainPhoto{
+    width: 100%;
+}
+a:hover{
+    text-decoration: none;
+    color: #0a4679;
+}
 
 
 
@@ -45,35 +59,6 @@ ul a{
     padding: 0 15px;
     
 }
-button{
-    margin-top: 15%;
-    margin-right: 5%;
-    margin-left: 5%;
-    height: 150px;
-    width: 150px;
-    
-}
-.topTitle{
-    font-size: 50px;
-    text-align: center;
-    margin-bottom: 50px;
-}
-.picture{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid black;
-    padding: 15px;
-    
-}
-.myImg{
-    max-width: 100%;
-    max-height: 100%;
-}
-.commentSection{
-    margin: auto;
-}
-
-
-.userName{
-    text-align: left;
+.nav{
+    font-color: white;
 }

@@ -3,6 +3,10 @@
 {% block content %}
     <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
     <span class="badge badge-primary">{{ post['created'] }}</span>
+    <br>
+    <span>Description</span>
     <p>{{ post['content'] }}</p>
-    <img src={{ post['photo']}}>
+    <img class ="mainPhoto"src={{ post['photo']}}>
+    {% for comment in comments%}
+    {% endfor %}
 {% endblock %}

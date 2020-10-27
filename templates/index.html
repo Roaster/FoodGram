@@ -5,14 +5,14 @@
     
     <section class="flex">
         <div>
-            <img src="{{posts[0]['photo']}}" alt="">
+            <img class="mainPhoto" src="{{posts[0]['photo']}}" alt="">
         </div>
     </section>
     
     <div>
-        <span>
+        <h1>
             What is everyone eating?
-        </span>
+        </h1>
     </div>
     <div class="myContainer">
     {% for post in posts %}
@@ -23,7 +23,7 @@
         <span class="badge badge-primary">{{ post['created'] }}</span>
         <a href="{{ url_for('post', id=post['id']) }}"><img class="myPhoto"src={{ post['photo']}}>
         </a>
-    <hr>
+    
     </div>
     {% endfor %}
     </div>
