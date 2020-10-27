@@ -12,16 +12,25 @@
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
+    <div class="topcontainer">
     <section class="flex">
       <a href="/"><span>FoodGRAM</span></a>
       <div class="nav">
         <ul>
+          {% if session['logged_in'] %}
           <li><a href="/">Home</a></li>
           <li><a href="/upload">Upload</a></li>
-          <li> <a href="/login"> Login</a></li>
+          <li> <a href="/logout">{{session['username']}}</a></li>
+          {% else %}
+          <li><a href="/">Home</a></li>
+          <li><a href="/upload">Upload</a></li>
+          <li> <a href="/login">Login</a></li>
+          {% endif %}
+          
         </ul>
       </div>
     </section>
+  </div>
    <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
       <a class="navbar-brand" href="{{ url_for('index')}}">FOODGram</a>
       <div class="collapse navbar-collapse" id="navbarNav">

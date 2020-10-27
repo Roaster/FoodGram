@@ -6,12 +6,18 @@
 body{
     background:#a3def5
 }
+.topcontainer{
+    position: fixed;
+    width: 100%;
+    margin-bottom: 20px;
+}
 .myContainer{
     display: flex;
-    
     overflow: auto;
     margin: auto
-    
+}
+.container{
+    padding-top: 20px;
 }
 .pictures{
     margin: 20px 20px;

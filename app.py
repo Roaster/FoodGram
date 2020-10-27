@@ -1,10 +1,12 @@
 import sqlite3
 import os
 import imghdr
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, request, url_for, flash, redirect,session
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
+
+
 
 app = Flask(__name__)
 
@@ -15,6 +17,9 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png']
 # user-uploaded images will be stored in the /uploads folder in this project directory
 app.config['UPLOAD_PATH'] = 'static/uploads'
+
+loggedIn = True
+userProf = ""
 
 class UserData():
     def __init__(self, user):
@@ -28,6 +33,9 @@ class UserData():
 
 
 # START HELPER FUNCTIONS
+def isLoggedin():
+    return loggedIn
+
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
@@ -72,7 +80,7 @@ def index():
     conn.close()
     files = os.listdir(app.config['UPLOAD_PATH'])
     
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', posts=posts, logStat = loggedIn, user = userProf)
 
 # sign-up page
 @app.route("/signup", methods=["GET", "POST"])
@@ -113,8 +121,16 @@ def login():
                 error = 'Invalid Credentials Please Try Again'
                 return render_template('login.html', error=error)
             else:
+                session['logged_in'] = True
+                session['username'] = username
                 return redirect(url_for('index'))
     return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return redirect(url_for('index'))
+    return render_template('login.html') 
 
 # display an individual post
 @app.route('/<int:id>', methods=('GET', 'POST'))
@@ -236,6 +252,10 @@ def delete(id):
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
+
+@app.context_processor
+def injectUser():
+    return dict(user = userProf)
 
 
 
