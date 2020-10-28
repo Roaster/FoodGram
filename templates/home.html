@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>FoodGram</title>
-</head>
-<body>
-    <div class="topTitle">
-        FOODgram
-    </div>
-    <div class="picture">
-        <button>Previous</button>
-        <div class="mainPicture">
-            <img class="myImg"src="burger1.png" index="0" alt="Delicious burger">
-            
-        </div>
-        <button onclick="nextPicture()">Next</button>
-    </div>
-    
-        <div class="commentSection">
-            <ul class="commentList">
+{% extends 'base.html' %}
 
-                <li>
-                    <span onclick="addComment()" class="userName">Username: </span>
-                    This burger looks delicious!
-                </li>
-                <li>
-                    <span class="userName">Username: </span>
-                    This burger looks delicious!
-                </li>
-                
-            </ul>
-        </div>
+{% block content %}
+    <h1>{% block title %} Welcome to FOODgram {% endblock %}</h1>
+    {% if posts %}
+        <section class="flex">
+            <div>
+                <img class="mainPhoto" src="{{posts[0]['photo']}}" alt="">
+            </div>
+        </section>
+    {% endif %}
+    <div>
+        <h1>
+            What is everyone eating? {{user}}
+        </h1>
+    </div>
+    <div class="myContainer">
+    {% for post in posts %}
+        <div class="pictures">
+        <a href="{{ url_for('post', id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('post', id=post['id']) }}"><img class="myPhoto"src={{ post['photo']}}>
+        </a>
     
-    <script src="scripts/scipts.js"></script>
-</body>
-</html>
+    </div>
+    {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+{% endblock %}
