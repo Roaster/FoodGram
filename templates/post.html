@@ -11,12 +11,12 @@
     <a href="{{ url_for('addComment', id=post['id']) }}">
         <span class="badge badge-warning">Add Comment</span>
     </a>
-    <form method="post">
+    <form action="{{ url_for('post', id=post['id']) }}" method="post">
         <div class="form-group">
             <button type="submit" class="btn btn-primary">
-                <a href="{{ url_for('post', id=post['id']) }}">
+                
                 Upvote this image!
-                </a></button>
+                </button>
         </div>
     </form>
     <p>Current score: {{ post['score']}} </p>

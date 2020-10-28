@@ -7,7 +7,8 @@ CREATE TABLE posts (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   content TEXT NOT NULL,
-  photo varchar(50) NOT NULL
+  photo varchar(50) NOT NULL,
+  score INTEGER DEFAULT 0
 );
 
 CREATE TABLE users (

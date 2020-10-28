@@ -18,7 +18,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png']
 # user-uploaded images will be stored in the /uploads folder in this project directory
 app.config['UPLOAD_PATH'] = 'static/uploads'
 
-loggedIn = True
+loggedIn = False
 userProf = ""
 
 class UserData():
@@ -142,14 +142,14 @@ def post(id):
         conn = get_db_connection()
         cursor = conn.cursor()
         # get the current score
-        old_score = conn.execute('SELECT score FROM posts WHERE id = ?', [id])
+        old_score = cursor.execute('SELECT score FROM posts WHERE id = ?', [id])
         # add plus one to that score
-        new_score = old_score + 1
+        new_score = old_score
 
         # insert the new score to the database entry
-        conn.execute('UPDATE posts SET score = ?'
+        cursor.execute('UPDATE posts SET score = score + 1'
                          ' WHERE id = ?',
-                         (new_score, id))
+                         (id))
         get_score = conn.execute('SELECT score FROM posts WHERE id = ?', [id])
         print('the score is ' + str(get_score))
         conn.commit()
