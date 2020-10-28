@@ -8,7 +8,8 @@ CREATE TABLE posts (
   title TEXT NOT NULL,
   content TEXT NOT NULL,
   photo varchar(50) NOT NULL,
-  score INTEGER DEFAULT 0
+  score INT NOT NULL,
+  userid TEXT NOT NULL
 );
 
 CREATE TABLE users (
@@ -22,8 +23,7 @@ CREATE TABLE comments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   message TEXT NOT NULL,
-  userid TEXT NOT NULL,
   postid TEXT NOT NULL,
-  FOREIGN KEY(userid) REFERENCES users(id)
+  userid TEXT NOT NULL,
   FOREIGN KEY(postid) REFERENCES post(id)
 );

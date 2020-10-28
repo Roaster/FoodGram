@@ -14,11 +14,11 @@
   <body>
     <div class="topcontainer">
     <section class="flex">
-      <a href="/"><span>FoodGRAM</span></a>
+      <a href="{{ url_for('home') }}"><span>FoodGRAM</span></a>
       <div class="nav">
         <ul>
           {% if session['logged_in'] %}
-          <li><a href="/">Home</a></li>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
           <li><a href="/upload">Upload</a></li>
           <li> <a href="/logout">{{session['username']}}</a></li>
           {% else %}
@@ -31,17 +31,6 @@
       </div>
     </section>
   </div>
-   <!-- <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <a class="navbar-brand" href="{{ url_for('index')}}">FOODGram</a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link" href="{{url_for('upload')}}">Upload Image</a>
-          </li>
-          </ul>
-      </div>
-  </nav>
-  -->
   <div class="container">
       {% for message in get_flashed_messages() %}
           <div class="alert alert-danger">{{ message }}</div>
@@ -58,4 +47,5 @@
     
   </body>
   
+</html>
 </html>
