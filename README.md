@@ -7,6 +7,7 @@ To run this project, complete the following steps:
 Step 1: Make sure you have the following installed:
 - python: pip install python
 - flask: pip install flask
+- PIL: pip install pillow
 
 Step 2: Open project in Visual Studio Code and open a Terminal.
 
