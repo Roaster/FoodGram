@@ -4,24 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/png" href="/static/uploads/favicon.png"/>
     <title>Sign up to Start Fighting</title>
   </head>
   <body>
-  <div class="indexpage">
+  <div class="loginpage">
     <form action="" method="POST">
         <div class="form-group">
-            <div class="container">
+            <div class="logincontainer">
                 <div class="row"></div>
                 <div class="row">
-                    <label for="username">Username</label>
+                    <label for="username"><h1>Username</h1></label>
                     <input type="text" name="username"
                         placeholder="Enter username" class="form-control"
                         value="{{ request.form['username'] }}"></input>
                     <br>
-                    <label for="password">Password</label>
+                    <label for="password"><h1>Password</h1></label>
                     <input type="password" name="password"
                         placeholder="Enter password" class="form-control"
                         value="{{ request.form['password'] }}"></input>

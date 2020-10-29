@@ -1,29 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
-    <span class="badge badge-primary">{{ post['created'] }}</span>
-    <p>{{ post['content'] }}</p>
-    <img class="mainPhoto" src={{ post['photo']}}>
-    <a href="{{ url_for('edit', id=post['id']) }}">
-        <span class="badge badge-warning">Edit</span>
-    </a>
-    <a href="{{ url_for('addComment', id=post['id']) }}">
-        <span class="badge badge-warning">Add Comment</span>
-    </a>
-    <form action="{{ url_for('post', id=post['id']) }}" method="post">
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">
-                
-                Upvote this image!
-                </button>
-        </div>
-    </form>
-    <p>Current score: {{ post['score']}} </p>
-    <p>User Comments</p>
-    {% for comments in comments %}
-        <p>{{ comments['message'] }}</p>
-        <span class="badge badge-primary">{{ comments['created'] }}</span>
-        <hr>
-    {% endfor %}
+<div class="container">
+    <div class="row">
+        <p>Posted by: {{ post['userid']}} </p>
+    </div>
+    <div class="row">
+        <span class="posttitle">{% block title %} {{ post['title'] }} {% endblock %}</span>
+        <br>
+    </div>
+    <div class="row">
+        <br>
+        <span class="badge badge-primary">This picture was posted on: {{ post['created'] }}</span>
+    </div>
+    <div class="row">
+        <p>Description: {{ post['content'] }}</p>
+    </div>
+    <div class="row">
+        <img src={{ post['photo']}} class="img-thumbnail">
+        <br>
+    </div>
+    <div class="row">
+        <a href="{{url_for('edit', id=post['id'])}}" class="btn btn-primary">Edit This Post</a>
+        <a href="{{url_for('addComment', id=post['id'])}}" class="btn btn-primary">Add Comment</a>
+        <form method="post">
+            <a href="{{ url_for('upvote', id=post['id']) }}" class="btn btn-primary">Upvote this image!</a>
+        </form>
+    </div>
+    <div class="row">
+        <p>Current score: {{ post['score']}} </p>
+        <p>User Comments</p>
+        {% for comments in comments %}
+            <p>{{ comments['userid']}} said:</p>
+            <p>{{ comments['message'] }}</p>
+            <span class="badge badge-primary">This comment was posted on: {{ comments['created'] }}</span>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

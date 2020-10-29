@@ -1,6 +1,7 @@
 import sqlite3
 import os
-import imghdrimport PIL
+import imghdr 
+import PIL
 from PIL import Image
 from flask import Flask, render_template, request, url_for, flash, redirect,session
 from werkzeug.exceptions import abort
@@ -18,7 +19,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png']
 app.config['UPLOAD_PATH'] = 'static/uploads'
 
 # keep track of session details
-loggedIn = True
+loggedIn = False
 userProf = ""
 
 # START HELPER FUNCTIONS
@@ -347,3 +348,4 @@ def injectUser():
     return dict(user = userProf)
 
 if __name__ == "__main__":
+ app.run(debug = True)

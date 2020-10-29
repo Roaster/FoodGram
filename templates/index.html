@@ -1,34 +1,35 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>{% block title %} Welcome to FOODgram {% endblock %}</h1>
-    
-    {% if posts %}
-    <section class="flex">
-        <div>
-            <img class="mainPhoto" src="{{posts[0]['photo']}}" alt="">
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>FOODGram</title>
+  </head>
+  <body>
+    <div class="indexpage">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm"></div>
+          <div class="col-sm">
+            <div class="centered-title">FOODgram</div>
+            <div class="centered-smalltitle">a food-fighting website.</div>
+            <div class="btn-toolbar">
+            <a href="{{url_for('login')}}" class="btn btn-primary">Login</a>
+            <a href="{{url_for('signup')}}" class="btn btn-default">Sign Up</a>
+            </div>
+          </div>
+          <div class="col-sm"></div>
         </div>
-    </section>
-    {% endif %}
-
-    <div>
-        <h1>
-            What is everyone eating? {{user}}
-        </h1>
+      </div>
     </div>
-    <div class="myContainer">
-        {% for post in posts %}
-        <div class="pictures">
-        <a href="{{ url_for('post', id=post['id']) }}">
-            <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post['created'] }}</span>
-        <a href="{{ url_for('post', id=post['id']) }}"><img class="myPhoto"src={{ post['photo']}}>
-        </a>
-    
-    </div>
-    {% endfor %}
-    </div>
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-{% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
