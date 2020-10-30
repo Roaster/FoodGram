@@ -2,34 +2,41 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <p>Posted by: {{ post['userid']}} </p>
-    </div>
+    
     <div class="row">
         <span class="posttitle">{% block title %} {{ post['title'] }} {% endblock %}</span>
         <br>
     </div>
-    <div class="row">
-        <br>
-        <span class="badge badge-primary">This picture was posted on: {{ post['created'] }}</span>
-    </div>
+    
     <div class="row">
         <p>Description: {{ post['content'] }}</p>
     </div>
     <div class="row">
-        <img src={{ post['photo']}} class="img-thumbnail">
-        <br>
+        <p>Posted by: {{ post['userid']}} </p>
     </div>
     <div class="row">
+        <span class="badge badge-primary">This picture was posted on: {{ post['created'] }}</span>
+    </div>
+    <div class="row width100">
+        <img src={{ post['photo']}} class="mainPhoto">
+        <br>
+    </div>
+    <div class="row postBar">
+        <div>
         <a href="{{url_for('edit', id=post['id'])}}" class="btn btn-primary">Edit This Post</a>
         <a href="{{url_for('addComment', id=post['id'])}}" class="btn btn-primary">Add Comment</a>
+        </div>
+        <div>
         <form method="post">
             <a href="{{ url_for('upvote', id=post['id']) }}" class="btn btn-primary">Upvote this image!</a>
         </form>
+        </div>
     </div>
+    
+    
     <div class="row">
         <p>Current score: {{ post['score']}} </p>
-        <p>User Comments</p>
+        <p class="underline">User Comments</p>
         {% for comments in comments %}
             <p>{{ comments['userid']}} said:</p>
             <p>{{ comments['message'] }}</p>
