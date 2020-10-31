@@ -121,19 +121,18 @@ def delete_post(id):
 # if the username is found and the password is correct for that username, then log in
 def validate(username, password):
     conn = get_db_connection()
-    user = conn.execute('SELECT * FROM users WHERE username = ?', [username])
-    get_data = user.fetchall()
-    user_data = get_data[0]
+    user = conn.execute('SELECT * FROM users WHERE username = ?', [username]).fetchone()
     conn.close()
     if user is None:
         return False
     else:
-        if password == user_data['password']:
+        if password == user['password']:
             return True
         else:
             return False
 
 # count number of rows currently in the users table in the database
+# if there are no users in the database, return true
 def num_users():
     conn = get_db_connection()
     number = conn.execute('SELECT * FROM users').fetchone()
@@ -208,8 +207,8 @@ def login():
             validate_user = validate(username, password)
 
             if validate_user == False:
-                error = 'Invalid Credentials Please Try Again'
-                return render_template('login.html', error=error)
+                flash('The username or password is incorrect.')
+                return redirect(url_for('login'))
 
             else:
                 session['logged_in'] = True
