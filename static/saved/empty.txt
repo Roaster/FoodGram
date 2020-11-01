@@ -1,0 +1,2 @@
+Please ignore this txt document. This document is intentionally left empty.
+The saved folder is required for saving images to the project directory, but an empty folder cannot be created in GitHub.
