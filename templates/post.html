@@ -2,17 +2,19 @@
 
 {% block content %}
 <div class="container">
-    
+
     <div class="row">
-        <span class="posttitle">{% block title %} {{ post['title'] }} {% endblock %}</span>
+        <span class="posttitle">
+            <h1>{% block title %} {{ post['title'] }} {% endblock %}</h1>
+        </span>
         <br>
     </div>
-    
+
     <div class="row">
-        <p>Description: {{ post['content'] }}</p>
+        <h3>Description: {{ post['content'] }}</h3>
     </div>
     <div class="row">
-        <p>Posted by: {{ post['userid']}} </p>
+        <h3>Posted by: {{ post['userid']}} </h3>
     </div>
     <div class="row">
         <span class="badge badge-primary">This picture was posted on: {{ post['created'] }}</span>
@@ -23,25 +25,25 @@
     </div>
     <div class="row postBar">
         <div>
-        <a href="{{url_for('edit', id=post['id'])}}" class="btn btn-primary">Edit This Post</a>
-        <a href="{{url_for('addComment', id=post['id'])}}" class="btn btn-primary">Add Comment</a>
+            <a href="{{url_for('edit', id=post['id'])}}" class="btn btn-primary">Edit This Post</a>
+            <a href="{{url_for('addComment', id=post['id'])}}" class="btn btn-primary">Add Comment</a>
         </div>
         <div>
-        <form method="post">
-            <a href="{{ url_for('upvote', id=post['id']) }}" class="btn btn-primary">Upvote this image!</a>
-        </form>
+            <form method="post">
+                <a href="{{ url_for('upvote', id=post['id']) }}" class="btn btn-primary">Upvote this image!</a>
+            </form>
         </div>
     </div>
-    
-    
+
+
     <div class="row">
         <p>Current score: {{ post['score']}} </p>
         <p class="underline">User Comments</p>
         {% for comments in comments %}
-            <p>{{ comments['userid']}} said:</p>
-            <p>{{ comments['message'] }}</p>
-            <span class="badge badge-primary">This comment was posted on: {{ comments['created'] }}</span>
-            <hr>
+        <h3>{{ comments['userid']}} said:</h3>
+        <h4>{{ comments['message'] }}</h4>
+        <span class="badge badge-primary">This comment was posted on: {{ comments['created'] }}</span>
+        <hr>
         {% endfor %}
     </div>
 </div>
