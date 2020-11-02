@@ -31,6 +31,7 @@ Step 6: Upload a post.
   This is because there are no posts.
 - Upload a post by clicking on the Upload link on the upper right hand corner, near the Logout link.
 - Enter the prompted details to upload a post.
+- For convenience, we have included 5 tester images that you can use to upload, but any images that are .PNG or .JPG will work.
 
 Step 7: View uploaded posts.
 - The featured image is the enlarged image in the center of home page. Currently, this featured image is whatever is the first uploaded post.
