@@ -3,7 +3,7 @@ import os
 import imghdr 
 import PIL
 from PIL import Image
-from flask import Flask, render_template, request, url_for, flash, redirect,session
+from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 
@@ -14,9 +14,9 @@ app.config['SECRET_KEY'] = 'Stablecoffee123'
 # control max file size
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 # only accept these file formats
-app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png']
-# user-uploaded images will be stored in the /uploads folder in this project directory
-app.config['UPLOAD_PATH'] = 'static/uploads'
+app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.JPG', '.PNG']
+# resized user images will be stored in the /saved folder in this project directory
+app.config['SAVE_PATH'] = 'static/saved'
 
 # keep track of session details
 loggedIn = False
@@ -185,8 +185,8 @@ def signup():
 # login page
 @app.route("/login/", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
 
+    if request.method == "POST":
         # if there are no current users, force user to the sign-up page signup.html
         # ran into error otherwise
         if num_users():
@@ -198,7 +198,7 @@ def login():
 
         # user must fill out both fields
         if not username or not password:
-            flash("All fields must be filled out.")
+            # flash("All fields must be filled out.")
             return redirect(url_for('login'))
 
         else:
@@ -207,7 +207,7 @@ def login():
             validate_user = validate(username, password)
 
             if validate_user == False:
-                flash('The username or password is incorrect.')
+                # flash('The username or password is incorrect.')
                 return redirect(url_for('login'))
 
             else:
@@ -234,7 +234,6 @@ def home():
     # thus, get all the posts and display them
     else:    
         posts = get_all_posts()
-        files = os.listdir(app.config['UPLOAD_PATH'])
         return render_template('home.html', posts=posts)
 
 # display an individual post
@@ -301,10 +300,43 @@ def upload():
                 abort(400)
 
             # good file extension, so add it to our uploads folder
-            file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-            filepath = 'static/uploads/' + filename
+            # file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+            # filepath = 'static/uploads/' + filename
+            # now crop that image to be a square
+            # open the image
+            im = Image.open(file)
+            # get original dimensions of image
+            width, height = im.size
 
-            # now add the post to the database, with the path to the image file stored in the database
+            if width != height: 
+                if width < height:
+                    new_width = width
+                    new_height = width
+
+                elif width > height:
+                    new_width = height
+                    new_height = height
+
+                # Setting the points for cropped image
+                left = (width - new_width) / 2
+                top = (height - new_height) / 2
+                right = (width + new_width) / 2
+                bottom = (height + new_height) / 2
+
+                # now crop it
+                im1 = im.crop((left, top, right, bottom))
+
+                # now save to directory
+                im1.save(os.path.join(app.config['SAVE_PATH'], filename))
+                filepath = 'static/saved/' + filename
+
+            # no additional crop work needed, can save directly
+            else: 
+                file.save(os.path.join(app.config['SAVE_PATH'], filename))
+                filepath = 'static/saved/' + filename
+
+            # now add the post to the database, 
+            # with the path to the image file stored in the database
             insert_post(title, content, filepath, user)
             return redirect(url_for('home'))
 
