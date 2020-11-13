@@ -4,6 +4,8 @@ Project for CPSC 349
 
 The video presentation for this project can be viewed at: https://drive.google.com/file/d/1ASrK7EiFER4U3Xnav7ZFwhmDYuzHBHVs/view?usp=sharing
 
+Peer review grading rubric is uploaded here, titled: Project_1_Peer_Review.pdf
+
 To run this project, complete the following steps:
 
 Step 1: Make sure you have the following installed:
